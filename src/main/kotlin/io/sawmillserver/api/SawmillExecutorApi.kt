@@ -16,10 +16,6 @@ fun Routing.sawmillExecutorApi() {
         val log = request.log.toMutableMap()
         val result = SawmillExecutorService.executePipeline(request.pipeline, log).single()
 
-        if (!result.executionResult.isSucceeded) {
-            call.respond(HttpStatusCode.BadRequest, mapOf("reason" to "garzen"))
-        }
-
         call.respond(result)
     }
 
