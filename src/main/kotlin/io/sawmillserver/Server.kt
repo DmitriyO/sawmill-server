@@ -6,10 +6,9 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
-import io.ktor.features.CallLogging
-import io.ktor.features.ContentNegotiation
-import io.ktor.features.DefaultHeaders
-import io.ktor.features.StatusPages
+import io.ktor.features.*
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.jackson.jackson
 import io.ktor.request.path
@@ -21,6 +20,7 @@ fun Application.apiModule() {
     installContentNegotiation()
     installCallLogging()
     installStatusPages()
+    installCORS()
     installRouting()
 }
 
@@ -58,6 +58,19 @@ private fun Application.installStatusPages() {
 
             call.respond(HttpStatusCode.InternalServerError, response)
         }
+    }
+}
+
+private fun Application.installCORS() {
+    install(CORS) {
+        method(HttpMethod.Options)
+        method(HttpMethod.Get)
+        method(HttpMethod.Post)
+        anyHost()
+        header(HttpHeaders.AccessControlAllowHeaders)
+        header(HttpHeaders.AccessControlAllowMethods)
+        header(HttpHeaders.ContentType)
+        header(HttpHeaders.AccessControlAllowOrigin)
     }
 }
 
