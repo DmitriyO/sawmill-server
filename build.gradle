@@ -12,6 +12,10 @@ repositories {
     jcenter()
 }
 
+task stage {
+    dependsOn build
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
     compile "ch.qos.logback:logback-classic:$version_logback"
