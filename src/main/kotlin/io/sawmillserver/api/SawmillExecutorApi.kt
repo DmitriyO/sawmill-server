@@ -20,7 +20,7 @@ fun Routing.sawmillExecutorApi() {
             call.respond(HttpStatusCode.BadRequest, mapOf("reason" to "garzen"))
         }
 
-        call.respond(log)
+        call.respond(result)
     }
 
     post ("sawmill/execute-multiple") {
