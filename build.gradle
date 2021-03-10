@@ -49,6 +49,8 @@ dependencies {
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$version_jacksonDatatypeJsr"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:$version_jacksonModuleKotlin"
 
+    compile 'io.logz.sawmill:sawmill-core:2.0.15'
+
     testCompile "junit:junit:$version_junit"
 }
 
